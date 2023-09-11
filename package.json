@@ -1,0 +1,26 @@
+{
+  "name": "book-record_management",
+  "version": "1.0.0",
+  "description": "Book Record Management system build with node.js and Express.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kailastr/Book-Record_Management.git"
+  },
+  "author": "Kailas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kailastr/Book-Record_Management/issues"
+  },
+  "homepage": "https://github.com/kailastr/Book-Record_Management#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
