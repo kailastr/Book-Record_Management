@@ -10,7 +10,7 @@ This is a Book Record Management API Backend for management of records of books
 /Users/{id} :  
     GET : Get a User details based on id ✅
     PUT : Update a user details based on id ✅
-    DELETE : Delete a user by id (only after all buyed     books are returned with/without fine)
+    DELETE : Delete a user by id (only after all buyed     books are returned with/without fine)✅
 
 /Users/Subscription-details/{id}
     GET : Get a users subscription details

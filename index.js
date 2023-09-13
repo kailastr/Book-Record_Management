@@ -96,6 +96,33 @@ app.put('/users/:id', (req, res) => {
 });
 
 /*
+Route : /users/:id
+Methos : DELETE
+Description : Delete user by id
+Access : Public
+Parameter : id
+*/
+app.delete("/users/:id", (req, res) => {
+    const { id } = req.params;
+    const user = users.find((each) => each.id === id);
+
+    if (!user) {
+        return res.status(404).json({
+            status: false,
+            message: "User not found with the given id"
+        });
+    }
+
+    const index = users.indexOf(user); //we could get the index of the element to be deleted
+    users.splice(index, 1); //splice(delete) the element having "index" array index and only delete 1 element
+
+    return res.status(202).json({
+        success: true,
+        message: users
+    });
+});
+
+/*
 Route : /users/id
 Methos : GET
 Description : Get user based on id
