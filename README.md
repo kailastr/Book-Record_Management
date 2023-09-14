@@ -4,13 +4,13 @@ This is a Book Record Management API Backend for management of records of books
 #Routes and Endpoints
 
 /Users :
-    POST : Create a new User ✅
-    GET : Get all users ✅
+    ✅POST : Create a new User 
+    ✅GET : Get all users 
 
 /Users/{id} :  
-    GET : Get a User details based on id ✅
-    PUT : Update a user details based on id ✅
-    DELETE : Delete a user by id (only after all buyed     books are returned with/without fine)✅
+    ✅GET : Get a User details based on id 
+    ✅PUT : Update a user details based on id
+    ✅DELETE : Delete a user by id (only after all buyed     books are returned with/without fine)
 
 /Users/Subscription-details/{id}
     GET : Get a users subscription details
@@ -19,15 +19,15 @@ This is a Book Record Management API Backend for management of records of books
     3. Fine (if any)
 
 /books
-    GET : Get all details of books
+    ✅GET : Get all details of books
     POST : Create a new book to the system
 
 /books/{id}
-    GET : Get a book by id
+    ✅GET : Get a book by id
     PUT : Update a book by id
 
-/books/issued
-    GET : Get all issued books
+/books/issued/by-user
+    ✅GET : Get all issued books
 
 /books/issued/withFine
     GET : Get all issued books details with fine
