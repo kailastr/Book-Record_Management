@@ -78,5 +78,73 @@ router.get("/issued/by-user", (req, res) => {
     return res.status(202).json({ success: true, message: issuedBooksArr });
 });
 
+/*
+Route : /books
+Methos : POST
+Description : Create new book
+Access : Public
+Parameter : none
+data : author, name, genre, price, publisher, id
+*/
+router.post("/", (req, res) => {
+    const { data } = req.body;
+
+    if (!data) { //to check if the body of new data of the book is empty
+        return res.status(404).json({
+            success: false,
+            message: "No data provided !!"
+        });
+    }
+
+    const book = books.find((each) => each.id === data.id);
+    if (book) {
+        return res.status(404).json({
+            success: false,
+            message: "Book already exist with the same id"
+        });
+    }
+
+    const allBooks = [...books, data]; //here the books array is spreaded in this array and we additionally added a new array element of data
+
+    return res.status(201).json({
+        success: true,
+        data: allBooks
+    });
+
+});
+
+/*
+Route : /books/id
+Methos : PUT
+Description : Update a book
+Access : Public
+Parameter : id
+data : author, name, genre, price, publisher, id
+*/
+router.put("/:id", (req, res) => {
+    const { id } = req.params;
+    const { data } = req.body;
+
+    const book = books.find((each) => each.id === id);
+
+    if (!book) {
+        return res.status(400).json({
+            success: false,
+            message: "Book with the given id doest found"
+        });
+    }
+
+    const updateData = books.map((each) => {
+        if (each.id === id) {
+            return { ...each, ...data }
+        }
+        return each;
+    });
+
+    return res.status(200).json({
+        success: true,
+        data: updateData
+    });
+});
 
 module.exports = router; //this is a default export(only exports single thing). if we want to export multiple things we could send as { object }
