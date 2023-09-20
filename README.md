@@ -30,7 +30,7 @@ This is a Book Record Management API Backend for management of records of books
     ✅GET : Get all issued books
 
 /books/issued/withFine
-    ⭕GET : Get all issued books details with fine
+    ⭕GET : Get all issued books details with fine✅
 
 #Subscription Type
     1. Basic (3 Months)

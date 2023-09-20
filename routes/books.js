@@ -147,4 +147,47 @@ router.put("/:id", (req, res) => {
     });
 });
 
+/*
+Route : /books/issued/withFine
+Methos : GET
+Description : Get all issued books with fine
+Access : Public
+Parameter : none
+*/
+router.get("/issued/withFine", (req, res) => {
+    const BooksIssuedUsers = users.filter((each) => each.issuedBook); //contains all the users which issued books
+
+    if (BooksIssuedUsers.length === 0) {
+        return res.status(404).json({
+            message: "There are no books issued yet"
+        });
+    }
+
+    const dateInDays = (data = "") => {
+        let date;
+        if (data === "") {
+            date = new Date();
+        } else {
+            date = new Date(data);
+        }
+
+        let days = Math.round(date / (1000 * 60 * 60 * 24));
+        return days;
+    };
+
+    const UpdatedBooksWithFine = BooksIssuedUsers.map((value) => {
+        let returDate = dateInDays(value.returnDate);
+        let currentDate = dateInDays();
+        value.BookReturnDateExceeded = returDate < currentDate;
+        value.FineForBookReturnOnly = returDate < currentDate ? 100 : 0;
+
+        return value;
+    });
+
+    return res.status(200).json({
+        success: true,
+        message: UpdatedBooksWithFine
+    });
+});
+
 module.exports = router; //this is a default export(only exports single thing). if we want to export multiple things we could send as { object }
