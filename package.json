@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/kailastr/Book-Record_Management#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.5.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
