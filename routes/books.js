@@ -4,7 +4,7 @@ const { books } = require("../data/books.json");
 const { users } = require("../data/users.json"); //importing users data to check the issued books
 
 const { UserModel, BookModel } = require("../Models"); //to import modals from the models/index
-const { GetAllBooks, GetSingleBooksById } = require("../controllers/BooksController");
+const { GetAllBooks, GetSingleBooksById, getAllIssuedBooks } = require("../controllers/BooksController");
 
 
 const router = express.Router();
@@ -35,32 +35,7 @@ Access : Public
 Parameter : none
 */
 //since passing only one parameter lead to go to the above route and it will misslead this route for that we should add an extra parameter with the url
-router.get("/issued/by-user", (req, res) => {
-    const userWithIssuedBooks = users.filter((each) => {
-        if (each.issuedBook) {
-            return each; //this if returns each users having issuedBook element
-        }
-    });
-
-    const issuedBooksArr = [];
-
-    userWithIssuedBooks.forEach((each) => {
-        const book = books.find((book) => book.id === each.issuedBook);
-
-        //adding new elements to the books data to show the end user the details about the issued book
-        book.issuedBy = each.name;
-        book.issuedDate = each.issuedDate;
-        book.returnDate = each.returnDate;
-
-        issuedBooksArr.push(book); //adding all the details to a array which contain all the details of the issued book
-    });
-
-    if (issuedBooksArr.length == 0) {
-        return res.status(404).json({ success: false, message: "No Book is issued yet " });
-    }
-
-    return res.status(202).json({ success: true, message: issuedBooksArr });
-});
+router.get("/issued/by-user", getAllIssuedBooks);
 
 /*
 Route : /books
