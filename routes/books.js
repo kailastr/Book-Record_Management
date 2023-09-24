@@ -3,6 +3,10 @@ const express = require("express");
 const { books } = require("../data/books.json");
 const { users } = require("../data/users.json"); //importing users data to check the issued books
 
+const { UserModel, BookModel } = require("../Models"); //to import modals from the models/index
+const { GetAllBooks, GetSingleBooksById } = require("../controllers/BooksController");
+
+
 const router = express.Router();
 
 /*
@@ -12,12 +16,7 @@ Description : GET all books
 Access : Public
 Parameter : None
 */
-router.get("/", (req, res) => {
-    res.status(202).json({
-        success: true,
-        data: books
-    });
-});
+router.get("/", GetAllBooks);
 
 /*
 Route : /Books/id
@@ -26,22 +25,7 @@ Description : GET book by id
 Access : Public
 Parameter : id
 */
-router.get("/:id", (req, res) => {
-    const { id } = req.params;
-
-    const book = books.find((each) => each.id === id);
-    if (!book) {
-        return res.status(404).json({
-            success: false,
-            message: "Book not found with this id !! "
-        });
-    }
-
-    return res.status(201).json({
-        success: true,
-        message: book
-    });
-});
+router.get("/:id", GetSingleBooksById);
 
 /*
 Route : /books/issued/books
