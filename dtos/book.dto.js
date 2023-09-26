@@ -1,4 +1,4 @@
-
+//data transfer object
 class IssuedBook {
     _id;
     name;
@@ -8,8 +8,9 @@ class IssuedBook {
     issuedBy;
     issuedDate;
     returnDate;
+    //the above given variables are the list of elements/datas that should have to be stored using this class
 
-    constructor(user) {
+    constructor(user) { //this constructor tells us that what particular data is to be stored inside the above variables and 'this' keyword specifies that the variable is inside this class itself
         this._id = user.issuedBook._id;
         this.name = user.issuedBook.name;
         this.genre = user.issuedBook.genre;

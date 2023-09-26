@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
             success: false,
             message: "User already exist in the given id !!"
         });
-    }
+    } 
 
     users.push({
         id,
