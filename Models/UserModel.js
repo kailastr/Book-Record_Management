@@ -20,6 +20,10 @@ const UserSchema = new Schema({
         ref: "Book", //this will ensures that the id belongs to the books collection
         required: false
     },
+    issuedDate: {
+        type: String,
+        required: false
+    },
     returnDate: {
         type: String,
         required: false
